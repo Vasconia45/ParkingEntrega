@@ -6,6 +6,9 @@
     <!--HTML-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!--CSS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <html>
     <div class="container">
@@ -61,7 +64,23 @@
                         Current Cars
                     </div>
                     <div class="card-body">
-                        
+                    <h5 class="card-title">Car</h5>
+                        <table class="table table-striped mt-3">
+                            <tbody>
+                                <form action="" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    @foreach($cars as $car)
+                                    <tr>
+                                        <th>{{ $car->plate }}</th>
+                                        <th>{{ $car->brand }}</th>
+                                        <th>{{ $car->model }}</th>
+                                        <th><button formaction="{{ route('car.delete', $car->id) }}" type="submit" class="btn btn-danger"><i class="bi bi-trash-fill text-white"></i>Delete</button></th>
+                                    </tr>
+                                    @endforeach
+                                </form>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

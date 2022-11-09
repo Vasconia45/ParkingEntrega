@@ -14,8 +14,8 @@ use App\Http\Controllers\CarController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-
+Route::get('/', [CarController::class, 'show'])->name('car.show');
+//Route to add a new car into the database
 Route::post('/car', [CarController::class, 'add'])->name('car.add');
+//Route to the delete a car from the database
+Route::delete('/car/{id}', [CarController::class, 'delete'])->name('car.delete');

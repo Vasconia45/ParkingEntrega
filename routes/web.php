@@ -14,7 +14,7 @@ use App\Http\Controllers\CarController;
 |
 */
 
-Route::get('/', [CarController::class, 'show'])->name('car.show');
+Route::view('/', "index")->name('car.show');
 //Route to add a new car into the database
 Route::post('/car', [CarController::class, 'add'])->name('car.add');
 //Route to the delete a car from the database
@@ -23,4 +23,9 @@ Route::delete('/car/{id}', [CarController::class, 'delete'])->name('car.delete')
 
 
 //Routes for the yield/section part
-Route::get('/caradd', [CarController::class, 'showAddcar'])->name('addcar');
+Route::view('/car', 'layouts.newcars')->name('addcar');
+Route::get('/list', [CarController::class, 'showListCars'])->name('listcar');
+Route::view('/search', 'layouts.searchcars')->name('searchcar');
+
+//Route for searching cars
+Route::post('/search', [CarController::class, 'check'])->name('car.search');

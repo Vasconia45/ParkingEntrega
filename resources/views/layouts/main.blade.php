@@ -11,6 +11,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <html>
+    <div>
+        @if(session('error_message'))
+        <div class="alert alert-danger">
+            {{ session('error_message') }}
+        </div>
+        @endif
+    </div>
+    <div>
+        @if(session('successful_message'))
+        <div class="alert alert-success">
+            {{ session('successful_message') }}
+        </div>
+        @endif
+    </div>
     <div class="container">
         <div class="text-center">
             <h1>@yield('title')</h1>

@@ -15,11 +15,15 @@ class CarController extends Controller
 
     public function add(Request $request){
         $car = new Car;
-        $car->plate = $request->plate;
-        $car->brand = $request->brand;
-        $car->model = $request->model;
-        $car->save();
-        return redirect('/list');
+        if($request->brand == null && $request->model == null){
+            return back()->with(['error_message' => 'At least one of the fields are empty. Please completed it.']);
+        }else{
+            $car->plate = $request->plate;
+            $car->brand = $request->brand;
+            $car->model = $request->model;
+            $car->save();
+            return redirect('/list')->with(['successful_message' => 'The car has been added successfully.']);
+        }
     }
 
     public function delete($id){

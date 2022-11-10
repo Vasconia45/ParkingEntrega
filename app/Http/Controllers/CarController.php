@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
-use DB;
 
 class CarController extends Controller
 {
@@ -30,11 +29,14 @@ class CarController extends Controller
     }
 
     public function check(Request $request){
-        $plates = DB::table('cars')
-            ->where('plate', $request->plate)
-            ->get();
-        foreach($plates as $plate){
-            dd($plate);
+        $Rplate = $request->plate;
+        $cars = Car::all();
+        $plates = [];
+        foreach($cars as $car){
+            if(str_contains($car->plate, $Rplate)){
+                 array_push($plates, $car);
+            }
         }
+        return view('layouts.searchcars', ['plates' => $plates]);
     }
 }

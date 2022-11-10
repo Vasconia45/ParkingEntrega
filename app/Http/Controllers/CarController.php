@@ -9,7 +9,11 @@ class CarController extends Controller
 {
     public function show(){
         $cars = Car::all();
-        return view('index', ['cars' => $cars]);
+        return view('layouts.currentcars', ['cars' => $cars]);
+    }
+
+    public function showAddcar(){
+        return view('layouts.newcars');
     }
 
     public function add(Request $request){
@@ -18,7 +22,7 @@ class CarController extends Controller
         $car->brand = $request->brand;
         $car->model = $request->model;
         $car->save();
-        return back();
+        return redirect('/');
     }
 
     public function delete($id){

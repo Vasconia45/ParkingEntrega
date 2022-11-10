@@ -19,3 +19,8 @@ Route::get('/', [CarController::class, 'show'])->name('car.show');
 Route::post('/car', [CarController::class, 'add'])->name('car.add');
 //Route to the delete a car from the database
 Route::delete('/car/{id}', [CarController::class, 'delete'])->name('car.delete');
+
+
+
+//Routes for the yield/section part
+Route::get('/caradd', [CarController::class, 'showAddcar'])->name('addcar');

@@ -9,18 +9,7 @@
                     <h5 class="card-title">Car</h5>
                         <table class="table table-striped mt-3">
                             <tbody>
-                                <form action="" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    @foreach($cars as $car)
-                                    <tr>
-                                        <th>{{ $car->plate }}</th>
-                                        <th>{{ $car->brand }}</th>
-                                        <th>{{ $car->model }}</th>
-                                        <th><button formaction="{{ route('car.delete', $car->id) }}" type="submit" class="btn btn-danger"><i class="bi bi-trash-fill text-white"></i>Delete</button></th>
-                                    </tr>
-                                    @endforeach
-                                </form>
+                                @each('partials.cars',$cars, 'car', 'partials.empty-cars')
                             </tbody>
                         </table>
                     </div>

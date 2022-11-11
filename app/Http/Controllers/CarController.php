@@ -34,13 +34,18 @@ class CarController extends Controller
 
     public function check(Request $request){
         $Rplate = $request->plate;
-        $cars = Car::all();
-        $plates = [];
-        foreach($cars as $car){
-            if(str_contains($car->plate, $Rplate)){
-                 array_push($plates, $car);
-            }
+        if($Rplate == null){
+            return back()->with(['error_message' => 'The search field is empty.']);
         }
-        return view('layouts.searchcars', ['plates' => $plates]);
+        else{
+            $cars = Car::all();
+            $plates = [];
+            foreach($cars as $car){
+                if(str_contains($car->plate, $Rplate)){
+                    array_push($plates, $car);
+                }
+            }
+            return view('layouts.searchcars', ['plates' => $plates]);
+        }
     }
 }

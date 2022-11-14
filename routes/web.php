@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,11 @@ Route::view('/search', 'layouts.searchcars')->name('searchcar');
 
 //Route for searching cars
 Route::post('/search', [CarController::class, 'check'])->name('car.search');
+
+//Route for creating users
+Route::get('/user', [UsuarioController::class, 'showListUsers'])->name('showListUsers');
+Route::post('/user', [UsuarioController::class, 'add'])->name('user.add');
+Route::delete('/user', [UsuarioController::class, 'delete'])->name('user.delete');
+
+//Route to asign user to car
+Route::get('/asign', [UsuarioController::class, 'show'])->name('asigncar');

@@ -32,6 +32,20 @@ class CarController extends Controller
         return back();
     }
 
+    public function showEdit($id){
+        $car = Car::find($id);
+        return view('layouts.editCar', ['car' => $car]);
+    }
+
+    public function edit(Request $request, $id){
+        $car = Car::find($id);
+        $car->plate = $request->plate;
+        $car->brand = $request->brand;
+        $car->model = $request->model;
+        $car->save();
+        return redirect('/list')->with(['successful_message' => "The car has been updated successfuly."]);
+    }
+
     public function check(Request $request){
         $Rplate = $request->plate;
         if($Rplate == null){

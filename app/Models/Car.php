@@ -13,6 +13,7 @@ class Car extends Model
         'id',
         'plate',
         'brand',
-        'model'
+        'model',
+        'user_id'    
     ];
 }

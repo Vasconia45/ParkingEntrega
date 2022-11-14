@@ -7,4 +7,7 @@
         @method('DELETE')
         <th><button type="submit" class="btn btn-danger"><i class="bi bi-trash-fill text-white"></i>Delete</button></th>
     </form>
+    <form>
+        <th><button type="submit" formaction="{{ route('edituser', $user->id) }}" class="btn btn-success"><i class="bi bi-pencil-fill"></i></i>Edit</button></th>
+    </form>
 </tr>

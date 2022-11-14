@@ -6,23 +6,21 @@
             <div class="mt-3 d-flex justify-content-center">
                 <div class="card col-8">
                     <div class="card-body">
-                        <form action="" method="POST">
+                        <form action="{{ route('asigncartouser') }}" method="POST">
                             @csrf
                             <div class="d-flex justify-content-between">
                                 <div class="col-5">
-                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                                        <option selected>Users</option>
+                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="user" id="user">
                                         @foreach($users as $user)
-                                            <option>{{ $user->name }}</option>
+                                            <option value="{{ $user->name }}"> {{ $user->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
 
                                 <div class="col-5">
-                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                                        <option selected>Cars</option>
+                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="car" id="car">
                                         @foreach($cars as $car)
-                                            <option>{{ $car->plate }}</option>
+                                            <option value="{{ $car->plate }}">{{ $car->plate }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -30,7 +28,7 @@
 
                             <div class="form-group row justify-content-center">
                                 <button type="submit" id="boton" class="col-sm-4 btn btn-outline-dark mt-2">Asign</button>
-                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>

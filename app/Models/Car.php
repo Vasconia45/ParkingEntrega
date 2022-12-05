@@ -16,4 +16,8 @@ class Car extends Model
         'model',
         'user_id'    
     ];
+
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
 }

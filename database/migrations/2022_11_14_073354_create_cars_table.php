@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('usuarios')->onUpdate('cascade')->onDelete('cascade');  
+            $table->unsignedBigInteger('user_id')->unique()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');  
             $table->string('plate');
             $table->string('brand');
             $table->string('model'); 

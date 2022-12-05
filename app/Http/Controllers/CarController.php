@@ -70,4 +70,16 @@ class CarController extends Controller
             return view('searchcars', ['plates' => $plates]);
         }
     }
+
+    public function searchcarUser(){
+        $users = User::all();
+        return view('searchCarUser', ['users' => $users]);
+    }
+
+    //porque no va este apartado(PREGUNTAR A UNAI)
+    public function searchingcarUser(Request $request){
+        $cars = Car::where('user_id', $request->user_id)
+        ->get();
+        return redirect('/search/user', ['cars' => $cars]);
+    }
 }

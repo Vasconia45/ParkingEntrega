@@ -39,6 +39,7 @@
                     <button type="submit" formaction="{{ route('addcar') }}" class="btn btn-success">New Car</button>
                     <button type="submit" formaction="{{ route('showListUsers') }}" class="btn btn-success">New User</button>
                     <button type="submit" formaction="{{ route('searchcar') }}" class="btn btn-success">Search Car</button>
+                    <button type="submit" formaction="{{ route('searchcarUser') }}" class="btn btn-success">Search Car from User</button>
                 </form>
                 <!-- Navbar content -->
                 </nav>

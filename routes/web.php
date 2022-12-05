@@ -32,6 +32,9 @@ Route::controller(CarController::class)->group(function(){
     Route::post('/search', 'check')->name('car.search');
     //Route to create cars
     Route::get('/car', 'showCars')->name('addcar');
+    //Route for searching car for user
+    Route::get('/search/user', 'searchcarUser')->name('searchcarUser');
+    Route::post('/search/user', 'searchingcarUser')->name('searchingcarUser');
 });
 
 

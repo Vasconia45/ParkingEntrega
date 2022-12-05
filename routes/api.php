@@ -20,6 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//NO esta bien del todo(PREGUNTAR A UNAI)
 Route::get('/users/cars', function(){
     $users = User::all();
     foreach($users as $user){

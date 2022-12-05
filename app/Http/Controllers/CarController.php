@@ -25,6 +25,9 @@ class CarController extends Controller
         if($request->brand == null && $request->model == null){
             return back()->with(['error_message' => 'At least one of the fields are empty. Please completed it.']);
         }else{
+            $validateCar = $request->validate([
+                'brand' => 'required|min:3|max:15'
+            ]);
             $car->plate = $request->plate;
             $car->brand = $request->brand;
             $car->model = $request->model;

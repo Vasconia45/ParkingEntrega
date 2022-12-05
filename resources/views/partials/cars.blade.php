@@ -2,6 +2,7 @@
     <th>{{ $car->plate }}</th>
     <th>{{ $car->brand }}</th>
     <th>{{ $car->model }}</th>
+    <th>{{ $car->user->name}}</th>
     <form action="{{ route('car.delete', $car->id) }}" method="POST">
         @csrf
         @method('DELETE')

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
-use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +17,7 @@ use App\Http\Controllers\UsuarioController;
 
 Route::view('/', "index")->name('car.show');
 //Routes for the yield/section part
-Route::view('/car', 'layouts.newcars')->name('addcar');
-Route::view('/search', 'layouts.searchcars')->name('searchcar');
+Route::view('/search', 'searchcars')->name('searchcar');
 
 Route::controller(CarController::class)->group(function(){
     //Route to add a new car into the database
@@ -31,10 +30,12 @@ Route::controller(CarController::class)->group(function(){
     Route::get('/list', 'showListCars')->name('listcar');
     //Route for searching cars
     Route::post('/search', 'check')->name('car.search');
+    //Route to create cars
+    Route::get('/car', 'showCars')->name('addcar');
 });
 
 
-Route::controller(UsuarioController::class)->group(function(){
+Route::controller(UserController::class)->group(function(){
     //Route for creating users
     Route::get('/user', 'showListUsers')->name('showListUsers');
     Route::post('/user', 'add')->name('user.add');

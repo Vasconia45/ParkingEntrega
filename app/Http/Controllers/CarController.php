@@ -4,13 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Models\User;
 
 class CarController extends Controller
 {
 
     public function showListCars(){
         $cars = Car::all();
-        return view('layouts.currentcars',  ['cars' => $cars]);
+        $users = User::all();
+        return view('currentcars',  ['cars' => $cars]);
+    }
+
+    public function showCars(){
+        $users = User::all();
+        return view('newcars', ['users' => $users]);
     }
 
     public function add(Request $request){
@@ -21,6 +28,7 @@ class CarController extends Controller
             $car->plate = $request->plate;
             $car->brand = $request->brand;
             $car->model = $request->model;
+            $car->user_id = $request->user_id;
             $car->save();
             return redirect('/list')->with(['successful_message' => 'The car has been added successfully.']);
         }
@@ -34,7 +42,7 @@ class CarController extends Controller
 
     public function showEdit($id){
         $car = Car::find($id);
-        return view('layouts.editCar', ['car' => $car]);
+        return view('editCar', ['car' => $car]);
     }
 
     public function edit(Request $request, $id){
@@ -59,7 +67,7 @@ class CarController extends Controller
                     array_push($plates, $car);
                 }
             }
-            return view('layouts.searchcars', ['plates' => $plates]);
+            return view('searchcars', ['plates' => $plates]);
         }
     }
 }

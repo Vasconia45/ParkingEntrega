@@ -29,6 +29,18 @@
                                 </div>
                             </div>
 
+                            <div class="form-group row mt-3">
+                                <label for="model" class="col-sm-3 col-form-label">User</label>
+                                <div class="col-sm-8">
+                                <select name="user_id" class="form-select" aria-label="Default select example">
+                                    <option selected>Open this select menu</option>
+                                    @foreach ($users as $user)
+                                        <option value="{{ $user->id }}"> {{ $user->name  }}</option>
+                                    @endforeach
+                                </select>
+                                </div>
+                            </div>
+
                             <div class="form-group row justify-content-center">
                                 <button type="submit" id="boton" class="col-sm-4 btn btn-outline-dark mt-2">Add Car</button>
                             </div>

@@ -3,32 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Usuario;
+use App\Models\User;
 use App\Models\Car;
 
-class UsuarioController extends Controller
+class UserController extends Controller
 {
     public function add(Request $request){
-        $usuario = new Usuario;
+        $usuario = new User;
         $usuario->name = $request->name;
+        $usuario->lastname = $request->lastname;
         $usuario->dni = $request->dni;
+        $usuario->email = $request->email;
         $usuario->save();
         return redirect('/user')->with(['successful_message' => 'The user has been added successfully.']);
     }
 
     public function showListUsers(){
-        $users = Usuario::all();
-        return view('layouts.createusers', ['users' => $users]);
-    }
-
-    public function show(){
-        $cars = Car::all();
-        $usuarios = Usuario::all();
-        return view('layouts.asignuserstocars', ['cars' => $cars], ['users' => $usuarios]);
+        $users = User::all();
+        return view('createusers', ['users' => $users]);
     }
 
     public function asign(Request $request){
-        $user = Usuario::where('name', $request->input('user'))
+        $user = User::where('name', $request->input('user'))
         ->first();
         $user_id = $user->id;
         $car = Car::where('plate', $request->input('car'))
@@ -39,18 +35,18 @@ class UsuarioController extends Controller
     }
 
     public function delete($id){
-        $user = Usuario::find($id);
+        $user = User::find($id);
         $user->delete();
         return back();
     }
 
     public function showEdit($id){
-        $users = Usuario::find($id);
-        return view('layouts.editUser', ['user' => $users]);
+        $users = User::find($id);
+        return view('editUser', ['user' => $users]);
     }
 
     public function edit(Request $request, $id){
-        $user = Usuario::find($id);
+        $user = User::find($id);
         $user->name = $request->name;
         $user->dni = $request->dni;
         $user->save();

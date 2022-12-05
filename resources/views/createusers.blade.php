@@ -17,9 +17,23 @@
                             </div>
 
                             <div class="form-group row mt-3">
+                                <label for="lastname" class="col-sm-3 col-form-label">Lastname</label>
+                                <div class="col-sm-8">
+                                <input type="text" class="form-control" id="lastname" name="lastname">
+                                </div>
+                            </div>
+
+                            <div class="form-group row mt-3">
                                 <label for="dni" class="col-sm-3 col-form-label">DNI</label>
                                 <div class="col-sm-8">
                                 <input type="text" class="form-control" id="dni" name="dni">
+                                </div>
+                            </div>
+
+                            <div class="form-group row mt-3">
+                                <label for="email" class="col-sm-3 col-form-label">Email</label>
+                                <div class="col-sm-8">
+                                <input type="text" class="form-control" id="email" name="email">
                                 </div>
                             </div>
 

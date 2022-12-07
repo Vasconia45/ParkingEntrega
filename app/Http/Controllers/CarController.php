@@ -26,7 +26,9 @@ class CarController extends Controller
             return back()->with(['error_message' => 'At least one of the fields are empty. Please completed it.']);
         }else{
             $validateCar = $request->validate([
-                'brand' => 'required|min:3|max:15'
+                'brand' => 'required|min:3|max:15',
+                'model' => 'required|min:1|max:15',
+                'plate' => 'required|regex:/(\\d{4})([A-Z]{3})/'
             ]);
             $car->plate = $request->plate;
             $car->brand = $request->brand;
@@ -74,15 +76,22 @@ class CarController extends Controller
         }
     }
 
-    public function searchcarUser(){
-        $users = User::all();
+    public function searchcarUser($id){
+        if(isset($id)){
+            $cars = Car::where('user_id', $id)
+            ->get();
+            return view('searchCarUser', ['cars' => $cars]);
+        }
+        else{
+            $users = User::all();
         return view('searchCarUser', ['users' => $users]);
+        }
     }
 
     //porque no va este apartado(PREGUNTAR A UNAI)
-    public function searchingcarUser(Request $request){
-        $cars = Car::where('user_id', $request->user_id)
+    /*public function searchingcarUser($id){
+        $cars = Car::where('user_id', $id)
         ->get();
-        return redirect('/search/user', ['cars' => $cars]);
-    }
+        return redirect()->route('searchcarUser', ['cars' => $cars]);
+    }*/
 }

@@ -20,13 +20,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//NO esta bien del todo(PREGUNTAR A UNAI)
 Route::get('/users/cars', function(){
-    $users = User::all();
+    $users = User::orderBy('lastname', 'ASC')
+    ->get();
     foreach($users as $user){
         $cars = Car::where('user_id', $user->id)
         ->get();
-        echo $cars;
+        echo "El usuario " . $user->id . ":";
+        foreach($cars as $car){
+            echo $car;
+        }
+        echo "<br>";
     }
 });
 

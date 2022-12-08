@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CarRequest;
 use Illuminate\Http\Request;
 use App\Models\Car;
 use App\Models\User;
@@ -20,16 +21,14 @@ class CarController extends Controller
         return view('newcars', ['users' => $users]);
     }
 
-    public function add(Request $request){
+    public function add(CarRequest $request){
+        $validated = $request->validated();
+        dd($validated);
         $car = new Car;
         if($request->brand == null && $request->model == null){
             return back()->with(['error_message' => 'At least one of the fields are empty. Please completed it.']);
         }else{
-            $validateCar = $request->validate([
-                'brand' => 'required|min:3|max:15',
-                'model' => 'required|min:1|max:15',
-                'plate' => 'required|regex:/(\\d{4})([A-Z]{3})/'
-            ]);
+            $validated = $request->validated();
             $car->plate = $request->plate;
             $car->brand = $request->brand;
             $car->model = $request->model;
@@ -76,22 +75,16 @@ class CarController extends Controller
         }
     }
 
-    public function searchcarUser($id){
-        if(isset($id)){
-            $cars = Car::where('user_id', $id)
-            ->get();
-            return view('searchCarUser', ['cars' => $cars]);
-        }
-        else{
-            $users = User::all();
-        return view('searchCarUser', ['users' => $users]);
-        }
+    public function searchcarUser(){
+        $users = User::all();
+        $cars = Car::all();
+        return view('searchCarUser', ['users' => $users, 'cars' => $cars]);
     }
 
     //porque no va este apartado(PREGUNTAR A UNAI)
-    /*public function searchingcarUser($id){
+    public function searchingcarUser($id){
         $cars = Car::where('user_id', $id)
         ->get();
         return redirect()->route('searchcarUser', ['cars' => $cars]);
-    }*/
+    }
 }

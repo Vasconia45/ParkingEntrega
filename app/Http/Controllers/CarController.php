@@ -74,14 +74,23 @@ class CarController extends Controller
 
     public function searchcarUser(){
         $users = User::all();
-        $cars = Car::all();
-        return view('searchCarUser', ['users' => $users, 'cars' => $cars]);
+        return view('searchCarUser', ['users' => $users]);
     }
 
-    //porque no va este apartado(PREGUNTAR A UNAI)
-    /*public function searchingcarUser($id){
-        $cars = Car::where('user_id', $id)
+    public function searchingcarUser(Request $request){
+        $x = $request->user_id;
+        $users = User::all();
+        return view('searchCarUser', ['users' => $users, 'x' => $x]);
+    }
+
+    public function searchingCarDate(Request $request){
+        $cars = Car::where('created_at', $request->date)
         ->get();
-        return redirect()->route('searchcarUser', ['cars' => $cars]);
-    }*/
+        dd($cars);
+        /*$cars = Car::where('created_at', '<', now())
+    ->limit(10)
+    ->orderBy('created_at', 'DESC')
+    ->get();
+    return $cars;*/
+    }
 }

@@ -12,21 +12,30 @@
                             <div class="form-group row">
                                 <label for="plate" class="col-sm-3 col-form-label">Plate</label>
                                 <div class="col-sm-8">
-                                <input type="text" class="form-control" id="plate" name="plate" value="{{ $car->plate }}">
+                                <input type="text" class="form-control @error('plate') @enderror" id="plate" name="plate" value="{{ $car->plate }}">
+                                @error('plate')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 </div>
                             </div>
 
                             <div class="form-group row mt-3">
                                 <label for="brand" class="col-sm-3 col-form-label">Brand</label>
                                 <div class="col-sm-8">
-                                <input type="text" class="form-control" id="brand" name="brand" value="{{ $car->brand }}">
+                                <input type="text" class="form-control @error('brand') @enderror" id="brand" name="brand" value="{{ $car->brand }}">
+                                @error('brand')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 </div>
                             </div>
 
                             <div class="form-group row mt-3">
                                 <label for="model" class="col-sm-3 col-form-label">Model</label>
                                 <div class="col-sm-8">
-                                <input type="text" class="form-control" id="model" name="model" value="{{ $car->model }}">
+                                <input type="text" class="form-control @error('model') @enderror" id="model" name="model" value="{{ $car->model }}">
+                                @error('model')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 </div>
                             </div>
 

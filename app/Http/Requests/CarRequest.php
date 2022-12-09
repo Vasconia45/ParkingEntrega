@@ -29,4 +29,12 @@ class CarRequest extends FormRequest
             'plate' => 'required|regex:/(\\d{4})([A-Z]{3})/'
         ];
     }
+
+    public function messages(){
+        return [
+            'brand' => 'The brand has to have a minimum length of 3 letters and a maximum length of 15.',
+            'model' => 'The model has to have a minimum length of 1 letter and a maximum length of 15.',
+            'plate' => 'The plate needs to have 4 digits and 3 capital letters.'
+        ];
+    }
 }

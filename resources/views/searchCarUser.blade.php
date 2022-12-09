@@ -15,7 +15,7 @@
                                         <option selected>Open this select menu</option>
                                         @foreach ($users as $user)
                                             <option value="{{ $user->id }}"> {{ $user->name  }}</option>
-                                        
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -27,9 +27,11 @@
                          <div>
                             <table class="table table-striped mt-3">
                                 <tbody>
-                                    <p>{{ $user->cars->id }}</p>
+                                    @foreach ($users as $user)
+                                        @foreach ($user->cars as $car)
+                                        <p>{{ $car->id }}</p>
+                                        @endforeach
                                     @endforeach
-                                    <!--@each('partials.usercars',$cars, 'car', 'partials.empty-cars')-->
                                 </tbody>
                             </table>
                         </div>

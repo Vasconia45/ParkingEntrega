@@ -22,13 +22,10 @@ class CarController extends Controller
     }
 
     public function add(CarRequest $request){
-        $validated = $request->validated();
-        dd($validated);
         $car = new Car;
         if($request->brand == null && $request->model == null){
             return back()->with(['error_message' => 'At least one of the fields are empty. Please completed it.']);
         }else{
-            $validated = $request->validated();
             $car->plate = $request->plate;
             $car->brand = $request->brand;
             $car->model = $request->model;
@@ -49,7 +46,7 @@ class CarController extends Controller
         return view('editCar', ['car' => $car]);
     }
 
-    public function edit(Request $request, $id){
+    public function edit(CarRequest $request, $id){
         $car = Car::find($id);
         $car->plate = $request->plate;
         $car->brand = $request->brand;
@@ -82,9 +79,9 @@ class CarController extends Controller
     }
 
     //porque no va este apartado(PREGUNTAR A UNAI)
-    public function searchingcarUser($id){
+    /*public function searchingcarUser($id){
         $cars = Car::where('user_id', $id)
         ->get();
         return redirect()->route('searchcarUser', ['cars' => $cars]);
-    }
+    }*/
 }
